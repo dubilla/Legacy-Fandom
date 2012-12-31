@@ -1,12 +1,10 @@
 Fandom::Application.routes.draw do
 
-  get "users/show"
-
   get "main/index"
 
   devise_for :users
 
-  match 'users/:id' => 'users#show'
+  get 'users/:id' => 'users#show', :as => :users_path
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
