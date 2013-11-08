@@ -22,9 +22,26 @@
 	      <a class="brand active" href="#">Fandom</a>
 
 			<ul class="nav">
-			  <li class="active"><%= nav_link "Profile", users_path_url(@user.id) %></li>
-			<!-- Need to fill this in after creating Games [DBU 12/30/12] -->
-			  <li><a href="/games">Games</a></li>
+				<% if @user %>
+					<li class="active"><%= nav_link "Profile", users_path_url(@user.id) %></li>
+				<% end %>
+				<!-- Need to fill this in after creating Games [DBU 12/30/12] -->
+				<li><a href="/games">Games</a></li>
+			</ul>
+
+			<ul class="nav secondary">
+				<% if user_signed_in? %>
+					<li>
+				  		<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+					</li>
+				<% else %>
+					<li>
+				  		<%= link_to "Sign up", new_user_registration_path %>
+					</li>
+					<li>
+						<%= link_to "Sign in", new_user_session_path %>
+					</li>
+				<% end %>
 			</ul>
 
 	      <!-- Everything you want hidden at 940px or less, place within here -->
